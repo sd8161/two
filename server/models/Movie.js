@@ -1,21 +1,21 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const movieSchema = new mongoose.Schema({
-    _id: {type: String, required: true},
-    title: {type: String, required: true},
-    overview: {type: String, required: true},
-    poster_path: {type: String, required: true},
-    backdrop_path: {type: String, required: true},
-    release_date: {type: String, required: true},
-    original_language: {type: String},
-    tagline: {type: String},
-    genres: {type: Array, required: true},
-    casts: {type: Array, required: true},
-    vote_average: {type: Number, required: true},
-    runtime: {type: Number, required: true},
-}, {timestamps: true}
-)
+  _id: {
+    type: String, // TMDB ID stored as string
+    required: true
+  },
+  title: String,
+  overview: String,
+  poster_path: String,
+  backdrop_path: String,
+  genres: Array,
+  release_date: String,
+  original_language: String,
+  tagline: String,
+  vote_average: Number,
+  runtime: Number
+});
 
-const Movie = mongoose.model('Movie', movieSchema);
-
+const Movie = mongoose.model("Movie", movieSchema);
 export default Movie;
