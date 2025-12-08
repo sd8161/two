@@ -14,6 +14,7 @@ import { serve } from "inngest/express";
 import showRouter from "./routes/showRoutes.js";
 import bookingRouter from "./routes/bookingRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -31,7 +32,15 @@ app.get("/", (req, res) => {
   res.send("Server is Live!");
 });
 
-// Inngest route (must be above other routes)
+// Routes
+app.use("/api/show", showRouter);
+app.use("/api/booking", bookingRouter);
+app.use("/api/admin", adminRouter);
+
+// ⭐ PROTECT ALL USER ROUTES (MUST HAVE AUTH)
+app.use("/api/user", userRouter);
+
+// Inngest (MUST BE LAST)
 app.use(
   "/api/inngest",
   serve({
@@ -40,13 +49,7 @@ app.use(
   })
 );
 
-// API routes
-app.use("/api/show", showRouter);
-app.use("/api/booking", bookingRouter);
-app.use("/api/admin", adminRouter);
-
-
-// Start server
+// Start Server
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
