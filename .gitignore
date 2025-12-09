@@ -1,2 +1,7 @@
-node_modules
+# Node modules and envs
+node_modules/
 .env
+.env.local
+client/.env
+server/.env
+*.env

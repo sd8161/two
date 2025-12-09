@@ -67,3 +67,4 @@ export const getOccupiedSeats = async (req, res) => {
     res.json({ success: false, message: err.message });
   }
 };
+
